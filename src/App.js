@@ -33,8 +33,19 @@ function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
   const [words] = useState(wordsList);
 
+  //inicio do Jogo
   const startGame = () => {
     setGameStage(stages[1].name)
+  }
+
+  //Processo de colocar as letras
+
+  const verifyLetter = () => {
+    setGameStage(stages[2].name)
+  }
+
+  const retry = () => {
+    setGameStage(stages[0].name)
   }
 
   return (
@@ -49,9 +60,9 @@ function App() {
   </>
     )}
 
-  {gameStage === "game" && <Game /> }
+  {gameStage === "game" && <Game verifyLetter={verifyLetter} /> }
 
-  {gameStage === " end" && <GameOver />}
+  {gameStage === "end" && <GameOver retry={retry}/>}
 
     </div>
   );
