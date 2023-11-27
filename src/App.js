@@ -30,7 +30,9 @@ function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
   const [words] = useState(wordsList);
 
-  console.log(wordsList);
+  const startGame = () => {
+    setGameStage(stages[1].name)
+  }
 
   return (
     <div className="App row">
@@ -38,7 +40,7 @@ function App() {
 {gameStage === "start" && (
   <>
     <NavBar />
-    <StartScreen />
+    <StartScreen startGame={startGame} />
     <Section />
     <Footer />
   </>
