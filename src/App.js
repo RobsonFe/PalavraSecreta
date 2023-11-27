@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+
+
 // Estilo do Projeto
 import './index.css';
 import './App.css';
