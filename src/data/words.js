@@ -5,5 +5,5 @@ export const wordsList = {
     corpo: ["Braço", "Perna", "Célebro", "Pescoço", "Olhos"],
     computador: ["Mouse", "Teclado", "Monitor", "Gabinete"],
     alimento: ["Arroz", "Feijão", "Carne", "Leite", "Ovo"],
-    clubes: ["Retrô", "Nautico", "Sport", "Santa Cruz"],
+    clubes: ["Vitoria", "Fortaleza", "Sport", "Bahia"],
 };
