@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React from 'react'
+import React, { useState, useRef} from 'react'
 import './Game.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './Footer';
@@ -14,6 +14,21 @@ function Game({verifyLetter,
   guesses, 
   score
 }) {
+
+    const [letter, setLetter] = useState("");
+
+    const letterInputRef = useRef(null);
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      
+      verifyLetter(letter);
+
+      setLetter("");
+
+      letterInputRef.current.focus();
+    }
+
   return (
     <div className='container-fluid'>
       <p className='points mt-3'>
@@ -43,10 +58,17 @@ function Game({verifyLetter,
       <p className='h5 mt-3'>Tente advinhar uma letra da palavra</p>
       </div>
 
-      <form className='container'>
+      <form className='container' onSubmit={handleSubmit} >
         <div className='row justify-content-center'>
 
-        <input className='form-control' type="text" name="letter" maxLength='1' required />
+        <input className='form-control'
+         type="text" 
+         name="letter" 
+         maxLength='1' 
+         required 
+         onChange={(e)=> setLetter(e.target.value)} 
+         value={letter} 
+         ref={letterInputRef} />
         </div>
 
         <button className='btn btn-success mt-3'>Coloque uma Letra</button>

@@ -85,8 +85,37 @@ function App() {
 
   //Processo de colocar as letras
 
-  const verifyLetter = () => {
-    setGameStage(stages[2].name)
+  const verifyLetter = (letter) => {
+    // setGameStage(stages[2].name)
+
+    const normalizeLetter = letter.toLowerCase();
+
+    //Se a letra já foi utilizada
+
+    if(guessedLetters.includes(normalizeLetter) || 
+      wrongLetters.includes(normalizeLetter))
+      {
+        return;
+      }
+
+      // coloque as letras digitadas ou remova as tentativas
+
+      if(letters.includes(normalizeLetter)){
+        setGuessedLetters((actualGuessedLetters)=>[
+
+          ...actualGuessedLetters,
+          normalizeLetter
+        ]);
+      } else {
+
+        setWrongLetters((actualWrongLetters)=>[
+          ...actualWrongLetters,
+          normalizeLetter
+        ]);
+      }
+
+      console.log(guessedLetters);
+      console.log(wrongLetters)
   }
 
   const retry = () => {

@@ -23,7 +23,7 @@ h1,h2, h3, button, form {
     padding: 1rem;
     border: 12px solid #ecfa00;
     border-radius: 20px;
-    width: 800px;
+    /* width: 800px; */
     display: flex;
     align-items: center;
     justify-content: center;
