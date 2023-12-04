@@ -16,7 +16,7 @@ import Footer from './components/Footer.js';
 import { useCallback, useEffect, useState } from 'react';
 
 // Dados
-import {wordList, wordsList} from './data/words.js';
+import {wordsList} from './data/words.js';
 import Game from './components/Game.js';
 import GameOver from './components/GameOver.js';
 
@@ -44,7 +44,7 @@ function App() {
   const [guesses, setGuesses] = useState(guessedQty);
   const [score, setScore] = useState(0);
 
-  const pickedWordAndCategory = () =>{
+  const pickedWordAndCategory = useCallback(() =>{
 
     //Pegando as categorias
 
@@ -59,10 +59,14 @@ function App() {
     
     return {word, category}
 
-  }
+  }, [words]);
 
   //inicio do Jogo
-  const startGame = () => {
+  const startGame = useCallback (() => {
+
+    //Limpar campos do jogo
+
+    clearLetterStates();
 
     //Pegar palavras e categorias
 
@@ -83,7 +87,7 @@ function App() {
     setLetters(wordLetters)
 
     setGameStage(stages[1].name)
-  }
+  }, [pickedWordAndCategory]);
 
   //Processo de colocar as letras
 
@@ -124,6 +128,10 @@ function App() {
     setWrongLetters([])
 };
 
+//Se eu ganho
+
+
+
   useEffect(()=>{
     if(guesses <= 0){
 
@@ -134,6 +142,26 @@ function App() {
       setGameStage(stages[2].name)
     }
   }, [guesses])
+
+  //condição de vitoria
+
+  useEffect(()=>{
+
+    const uniqueLetters = [...new Set(letters)];
+
+    //vitoria
+
+    if(guessedLetters.length === uniqueLetters.length){
+      // adicionar pontuação 
+
+      setScore((actualScore) => actualScore += 100)
+
+      // reiniciar o jogo do zero
+
+      startGame();
+    }
+
+  }, [guessedLetters, letters, startGame])
 
   const retry = () => {
 
